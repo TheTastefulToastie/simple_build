@@ -1,4 +1,6 @@
 // @Compile gcc -std=c99 sbuild.c -o sbuild
+// @Compile gcc -std=c99 sbuild.c -o sbuild && sudo cp sbuild /usr/bin
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
