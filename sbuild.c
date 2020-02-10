@@ -1,8 +1,6 @@
 // @Compile gcc -std=c99 sbuild.c -o sbuild
 // @Compile gcc -std=c99 sbuild.c -o sbuild && sudo cp sbuild /usr/bin
 
-#include <unistd.h>
-#include <sys/wait.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,10 +16,9 @@ char * read_first_line(char *path) {
   char *line = calloc(1, max_len);
   fgets(line, max_len, fp);
   fclose(fp);
-  // TODO: Handle windows line endings
-  size_t len = strlen(line);
-  line[len - 1] = 0; // Remove newline
-  if (line[len - 2] == '\r') line[len - 2] = 0;
+  char *newline = line + strlen(line) - 1;
+  *newline = 0; // Remove '\n'
+  if (*--newline == '\r') *newline = 0;
   return line;
 }
 
